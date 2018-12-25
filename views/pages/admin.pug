@@ -1,0 +1,35 @@
+extend ../layout
+
+block content
+  .container
+    .row
+      form(method="post", action="/admin/movie/create")
+        //- 隐藏表单域，用来更新电影数据，存储电影ID
+        input(type="hidden" name="movie[id]" value=movie.id)
+        .form-group
+          label.bmd-label-floating(for="inputTitle") 电影名称
+          input#inputTitle.form-control(type="text" name="movie[title]" value=movie.title)
+        .form-group
+          label.bmd-label-floating(for="inputDirector") 电影导演
+          input#inputDirector.form-control(type="text" name="movie[director]" value=movie.director)
+        .form-group
+          label.bmd-label-floating(for="inputCountry") 国家
+          input#inputCountry.form-control(type="text" name="movie[country]" value=movie.country)
+        .form-group
+          label.bmd-label-floating(for="inputLanguage") 语种
+          input#inputLanguage.form-control(type="text" name="movie[language]" value=movie.language)
+        .form-group
+          label.bmd-label-floating(for="inputPoster") 海报地址
+          input#inputPoster.form-control(type="text" name="movie[poster]" value=movie.poster)
+        .form-group
+          label.bmd-label-floating(for="inputFlash") 片源地址
+          input#inputFlash.form-control(type="text" name="movie[flash]" value=movie.flash)
+        .form-group
+          label.bmd-label-floating(for="inputYear") 上映年代
+          input#inputYear.form-control(type="text" name="movie[year]" value=movie.year)
+        .form-group
+          label.bmd-label-floating(for="inputSummary") 电影简介
+          textarea#inputSummary.form-control(type="text" name="movie[summary]" value=movie.summary)
+        .form-group
+          .col-sm-offset-2.col-sm-10
+        button.btn.btn-outline-success(type="submit") 录入
