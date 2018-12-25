@@ -8,8 +8,8 @@ const mongoDB = require('mongoose')
 const config = require('./config')
 
 // routes
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
+const indexRouter = require('./routes/movie')
+const adminRouter = require('./routes/admin')
 
 const app = express()
 
@@ -17,7 +17,7 @@ mongoDB.connect('mongodb://' + config.DB, {
   useNewUrlParser: true
 })
 const db = mongoDB.connection
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+db.on('error', console.error.bind(console, 'MongoDB连接错误：'))
 db.on('open', () => {})
 
 // view engine setup
@@ -32,7 +32,7 @@ app.use(lessMiddleware(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-app.use('/', usersRouter)
+app.use('/', adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
