@@ -18,17 +18,18 @@ router.get('/', function(req, res) {
 // 电影详情
 router.get('/movie/:id', function(req, res) {
   let id = req.params.id
+  console.log(id)
   if (id) {
     Movie.findById(id, function(err, movie) {
-      res.render('movie', {
+      if (err) {
+        console.error(err)
+      }
+      res.render('detail', {
         title: movie.title,
         movie
       })
     })
   }
-  res.render('movie', {
-    title: 'this is a movie'
-  })
 })
 
 module.exports = router

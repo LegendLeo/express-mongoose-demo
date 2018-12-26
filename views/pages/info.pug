@@ -3,7 +3,7 @@ extend ../layout
 block content
   .container
     .row
-      form(method="post", action="/admin/movie/create")
+      form(method="POST", action=isNew ? '/admin/create' : '/admin/update')
         //- 隐藏表单域，用来更新电影数据，存储电影ID
         input(type="hidden" name="movie[id]" value=movie.id)
         .form-group
@@ -32,4 +32,4 @@ block content
           textarea#inputSummary.form-control(type="text" name="movie[summary]" value=movie.summary)
         .form-group
           .col-sm-offset-2.col-sm-10
-        button.btn.btn-outline-success(type="submit") 录入
+        button.btn.btn-raised.btn-info(type="submit") #{isNew ? '录入' : '更新'}

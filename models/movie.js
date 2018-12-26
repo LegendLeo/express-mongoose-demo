@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const MovieSchema = new Schema({
   title: { type: String, required: true, max: 120 },
-  director: String, 
+  director: String,
   language: String,
   country: String,
   summary: String,
@@ -22,7 +22,7 @@ const MovieSchema = new Schema({
   }
 })
 
-MovieSchema.pre('save', next => {
+MovieSchema.pre('save', function(next) {
   if (this.isNew) {
     this.meta.createTime = this.meta.updateTime = Date.now()
   } else {
@@ -41,7 +41,7 @@ MovieSchema.statics = {
   findById (id, cb) {
     return this
       .findOne({ _id: id })
-      .exec()
+      .exec(cb)
   }
 }
 

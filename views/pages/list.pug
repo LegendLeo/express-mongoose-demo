@@ -3,27 +3,30 @@ extends ../layout
 block content
   .container
     .row
-      table.table.table-hover.table-borderd
-        thead
+      table.table.table-striped
+        thead.thead-dark
           tr
-            th 电影名字
-            th 导演
-            th 国家
-            th 上映时间
-            th 录入时间
-            th 查看
-            th 更新
-            th 删除
+            th(scope="col") 编号
+            th(scope="col") 电影名字
+            th(scope="col") 导演
+            th(scope="col") 国家
+            th(scope="col") 上映年代
+            th(scope="col") 录入时间
+            th(scope="col") 查看
+            th(scope="col") 更新
+            th(scope="col") 删除
         tbody
           each item in movies
-            tr(class = 'item-id-#{item._id}')
+            tr(class='item-id-' + item.id)
+              td(scope="row") #{movies.indexOf(item) + 1}
               td #{item.title}
               td #{item.director}
               td #{item.country}
               td #{item.year}
-              //td MM/DD/YYYY
               td #{moment(item.meta.updatedTime).format('MM/DD/YYYY')}
-              td: a( target = '_blank', href = '/movie/#{item._id}') 查看
-              td: a( target = '_self', href = '/admin/update/#{item._id}') 修改
               td
-                button.btn.btn-danger.del( type = 'button', data-id = '#{item._id}') 删除
+                button.btn.btn-raised.btn-success: a(target="blank" href='/movie/'+item.id) 查看
+              td
+                button.btn.btn-raised.btn-info: a(target="_self" href='/admin/update/'+item.id) 修改
+              td
+                button.btn.btn-raised.btn-danger.del(type="button" data-id=item.id) 删除
