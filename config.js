@@ -1,7 +1,7 @@
 const DB = {
   host: 'localhost',
-  port: 1234,
-  db: 'demo'
+  port: 27017,
+  db: 'movies'
 }
 
 module.exports = {
