@@ -98,4 +98,20 @@ router.post('/update', function(req, res) {
   }
 })
 
+router.delete('/delete', function(req, res) {
+  let id = req.query.id
+  if (id) {
+    Movie.remove({_id: id}, function(err, movie) {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log(movie)
+        res.json({
+          success: 1
+        })
+      }
+    })
+  }
+})
+
 module.exports = router
