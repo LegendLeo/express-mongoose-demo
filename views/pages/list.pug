@@ -12,9 +12,7 @@ block content
             th(scope="col") 国家
             th(scope="col") 上映年代
             th(scope="col") 录入时间
-            th(scope="col") 查看
-            th(scope="col") 更新
-            th(scope="col") 删除
+            th(scope="col" colspan="3" align="center") 操作
         tbody
           each item in movies
             tr(class='item-id-' + item.id)
@@ -30,4 +28,10 @@ block content
                 button.btn.btn-raised.btn-info: a(target="_self" href='/admin/update/'+item.id) 修改
               td
                 button.btn.btn-raised.btn-danger.del(type="button" data-id=item.id) 删除
+
+          tr
+            td(colspan="8")
+            td
+              button.btn.btn-raised.btn-success#create
+                a(href="/admin/create") 增加
   script(src="./scripts/admin.js")
